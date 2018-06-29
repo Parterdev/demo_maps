@@ -1,51 +1,25 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { AuthProvider } from '../../providers/auth/auth'; //Importación de la clase Provider para la asignación de usuarios por email y contraseña.
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+/**
+ * Generated class for the HomePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
+@IonicPage()
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
 export class HomePage {
 
-  //Variable miembro 'user' que contendrá el email y contraseña del usuario.
-  user = { email: '', password: '' };
-
-  constructor(
-    public alertCtrl: AlertController, 
-    public navCtrl: NavController, 
-    public navParams: NavParams,
-    public auth: AuthProvider
-  ) {
-
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  //Function Alert
-  showAlert() {
-    let alert=this.alertCtrl.create({
-      title: 'Opps!',
-      subTitle: 'Función en construcción...',
-      buttons: ['OK']
-    });
-    alert.present();
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad HomePage');
   }
-
-  //Function signin for user
-  signin(){
-    this.auth.registerUser(this.user.email, this.user.password) //Llamada al método registerUser. 
-    .then((user)=> {
-      //El usuario se ha creado correctamante
-    })
-    .catch(err=>{
-      let alert = this.alertCtrl.create({
-        title: 'Error',
-        subTitle: err.message,
-        buttons: ['Aceptar']
-      });
-      alert.present();
-    })
-  }
-
 
 }
